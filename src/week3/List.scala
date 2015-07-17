@@ -1,9 +1,10 @@
 package week3
 
-trait List[T] {
+trait List[+T] {
     def isEmpty: Boolean
     def head: T
     def tail: List[T]
+    def prepend[U >: T](elem: U): List[U] = new Cons(elem, this)
 }
 
 class Cons[T](val head: T, val tail: List[T]) extends List[T] {
@@ -16,7 +17,7 @@ class Cons[T](val head: T, val tail: List[T]) extends List[T] {
     }
 }
 
-class Nil[T] extends List[T] {
+object Nil extends List[Nothing] {
     def isEmpty: Boolean = true
     def head: Nothing = throw new NoSuchElementException("Nil.head")
     def tail: Nothing = throw new NoSuchElementException("Nil.tail")
@@ -25,10 +26,16 @@ class Nil[T] extends List[T] {
 }
 
 object MyList {
-    def apply[T]: List[T] = new Nil[T]
+    def apply[T]: List[T] = Nil
 
-    def apply[T](e1: T): List[T] = new Cons(e1, new Nil[T])
+    def apply[T](e1: T): List[T] = new Cons(e1, Nil)
 
-    def apply[T](e1: T, e2: T): List[T] = new Cons(e1, new Cons(e2, new Nil[T]))
+    def apply[T](e1: T, e2: T): List[T] = new Cons(e1, new Cons(e2, Nil))
 
+}
+
+object Test extends App {
+
+    val ls: List[String] = Nil
+    //def f(xs: List[NonEmpty], x: Empty) = xs prepend x
 }
