@@ -14,6 +14,7 @@ object Session_4_4_2 {
                                                   //> x  : week3.Cons[week4.B] =  > week4.B@17550481
     x.prepend(new A())                            //> res0: week3.List[week4.A] =  > week4.A@735f7ae5 > week4.B@17550481
     x.prepend(new C())                            //> res1: week3.List[week4.A] =  > week4.C@180bc464 > week4.B@17550481
+    x.prepend(new B())                            //> res2: week3.List[week4.B] =  > week4.B@1324409e > week4.B@17550481
 
 }
 
